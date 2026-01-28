@@ -13,7 +13,7 @@ export function Home() {
       <div className="flex-1 flex flex-col justify-center pb-12">
         {/* 헤더 - 중앙 정렬, 더 큰 타이틀 */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl mb-4 text-gray-900">하루의 색</h1>
+          <h1 className="text-4xl mb-4 text-gray-900">TextSpot</h1>
           <p className="text-lg text-gray-500">오늘의 마음을 기록해요</p>
         </div>
 

@@ -17,11 +17,12 @@ export function DiaryWrite() {
   const [content, setContent] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const today = new Date().toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).replace(/\. /g, '.').replace('.', '');
+ const today = new Date().toLocaleDateString('ko-KR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+}).replace(/\./g, '').replace(/ /g, '.');
+
 
   // 감정이 선택되지 않은 경우 감정 선택 페이지로 리다이렉트
   useEffect(() => {
