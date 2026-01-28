@@ -345,12 +345,14 @@
     --emotion-angry: #ff6b6b;
     --emotion-confused: #ffb347;
     --emotion-depressed: #6366f1;
-    --background: #fefbf6;
+    --background: #fefbf6;               /* 배경색!!! */
+
     --card-bg: #fff;
     --text-primary: #1f2937;
     --text-secondary: #6b7280;
     --border: #e5e7eb;
     --disabled: #d1d5db;
+    --surface: #fefbf6; /* 컨테이너(안쪽) 색상 */
   }
 
   body {

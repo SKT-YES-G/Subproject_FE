@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { ChevronLeft } from 'lucide-react';
 import { EmotionChip } from '../components/EmotionChip';
@@ -10,26 +10,46 @@ export function EmotionSelect() {
   const navigate = useNavigate();
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(null);
 
-  const handleNext = () => {
-    // 감정이 선택되었을 때만 텍스트 입력 페이지로 이동
-    if (selectedEmotion) {
-      navigate('/write', { 
-        state: { emotion: selectedEmotion },
-        replace: false 
-      });
+  const applyEmotionBackground = (emotionId: EmotionType) => {
+    const root = document.documentElement;
+
+    const emotionColor = getComputedStyle(root)
+      .getPropertyValue(`--emotion-${emotionId}`)
+      .trim();
+
+    if (emotionColor) {
+      root.style.setProperty('--background', emotionColor);
     }
   };
 
+  useEffect(() => {
+    const saved = localStorage.getItem('selectedEmotion') as EmotionType | null;
+    if (saved) {
+      setSelectedEmotion(saved);
+      applyEmotionBackground(saved);
+    }
+  }, []);
+
   const handleEmotionClick = (emotionId: EmotionType) => {
-    // 단일 선택만 가능하도록 설정
     setSelectedEmotion(emotionId);
+    localStorage.setItem('selectedEmotion', emotionId);
+    applyEmotionBackground(emotionId);
+  };
+
+  const handleNext = () => {
+    if (selectedEmotion) {
+      navigate('/write', {
+        state: { emotion: selectedEmotion },
+        replace: false,
+      });
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col max-w-md mx-auto px-6 py-8">
       {/* 헤더 */}
       <div className="mb-8">
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="p-2 -ml-2 hover:bg-gray-100 rounded-lg transition-colors"
           aria-label="뒤로가기"
@@ -58,12 +78,9 @@ export function EmotionSelect() {
         </div>
       </div>
 
-      {/* 하단 버튼 - 감정 선택 시에만 활성화 */}
+      {/* 하단 버튼 */}
       <div className="pb-8">
-        <PrimaryButton 
-          onClick={handleNext}
-          disabled={!selectedEmotion}
-        >
+        <PrimaryButton onClick={handleNext} disabled={!selectedEmotion}>
           다음
         </PrimaryButton>
       </div>
