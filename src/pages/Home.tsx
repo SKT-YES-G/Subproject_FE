@@ -1,26 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { PrimaryButton } from '../components/PrimaryButton';
-import { DiaryCard } from '../components/DiaryCard';
 import { DiaryEntry } from '../types';
 
-// Mock 최근 일기 데이터
-const recentDiaries: DiaryEntry[] = [
-  {
-    id: '1',
-    date: '2026.01.27',
-    emotion: 'happy',
-    title: '오랜만의 친구 만남',
-    content: '오늘 대학 친구들을 만나서 맛있는 브런치를 먹었다. 오랜만에 편하게 이야기하니 정말 좋았어.',
-  },
-  {
-    id: '2',
-    date: '2026.01.26',
-    emotion: 'calm',
-    title: '조용한 카페에서',
-    content: '혼자 카페에 앉아 책을 읽었다. 창밖으로 보이는 풍경이 평화로웠어.',
-  },
-];
 
 export function Home() {
   const navigate = useNavigate();
@@ -43,15 +25,6 @@ export function Home() {
         </div>
       </div>
 
-      {/* 최근 일기 - 하단 고정 */}
-      <div className="pb-8">
-        <h2 className="text-gray-900 mb-4">최근 일기</h2>
-        <div className="space-y-3">
-          {recentDiaries.map((entry) => (
-            <DiaryCard key={entry.id} entry={entry} />
-          ))}
-        </div>
-      </div>
     </div>
   );
 }
