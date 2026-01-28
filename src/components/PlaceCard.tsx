@@ -15,8 +15,9 @@ export function PlaceCard({ place }: PlaceCardProps) {
           <p className="text-sm text-gray-600 mb-3">{place.description}</p>
         </div>
       </div>
-      
+
       <div className="flex items-center justify-between">
+        {/* 평점 / 거리 */}
         <div className="flex items-center gap-3 text-sm text-gray-500">
           {place.rating && (
             <div className="flex items-center gap-1">
@@ -31,10 +32,25 @@ export function PlaceCard({ place }: PlaceCardProps) {
             </div>
           )}
         </div>
-        
-        <button className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-          지도에서 보기
-        </button>
+
+        {/* 지도에서 보기 */}
+        {place.mapUrl ? (
+          <a
+            href={place.mapUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+          >
+            지도에서 보기
+          </a>
+        ) : (
+          <button
+            disabled
+            className="px-4 py-2 text-sm font-medium text-gray-400 bg-gray-100 rounded-lg cursor-not-allowed"
+          >
+            지도에서 보기
+          </button>
+        )}
       </div>
     </div>
   );

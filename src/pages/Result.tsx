@@ -7,6 +7,16 @@ import { LoadingScreen } from '../components/LoadingScreen';
 import { getEmotionById } from '../utils/emotions';
 import { EmotionType, Place } from '../types';
 
+export type Place = {
+  id: string;
+  name: string;
+  description: string;
+  rating: number;
+  distance: string;
+  mapUrl?: string; // ✅ 추가
+};
+
+
 export function Result() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -64,6 +74,7 @@ export function Result() {
           description: '마음을 정리하기 좋은 산책 코스',
           rating: 4.5,
           distance: '2.5km',
+          mapUrl: 'https://maps.app.goo.gl/2sRYU35zFK6iKids6', // ✅ 추가
         },
         {
           id: '3',
